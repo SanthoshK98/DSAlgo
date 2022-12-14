@@ -1,0 +1,57 @@
+Topics
+
+
+1.Algorithm
+2.Measuring Performance
+3.Time & Space Complexity
+4.Big O Notation
+
+1.
+Algorithm Categories
+
+Math algorithms
+sort
+search
+Misc algorithm and problem solving
+
+Algorithm : An Algorithm is a set of instructions to solve a particular problem
+
+2.Measuring Algorithm performance
+
+Evaluate performance using 
+3.
+Time Complexity: Amount of time taken by an algorithm to run, as a function of input size
+Space Complexity: Amount of memory taken by an algorithm to run, as a function of input size
+
+How to represent complexity
+Asymptotic notations
+
+- Mathematical tools to represent time and space complexity
+ Big-O Notation(O-notation) - Worst case Complexity
+ Omega Notation - Best case Complexity
+ Theta Notation - Average case Complexity
+
+
+4.Big O Notation
+
+The worst case complexity of an algorithm is represented using the Big-O notation
+Big O notation describes the complexity of an algorithm using algebraic terms
+
+It has two important characteristics
+ it is expressed in terms of the input
+ it focuses on the bigger picture without getting caught up in the minute details
+
+Time Complexity
+
+O(n) - Linear => size of input increases time complexity increases
+O(1) - Constant => irrespective of size code executes once
+O(n square) - two nested loops then it is quadratic
+O(n cubic) - morethan two nested loop then it is cubic
+O(logn) - Logarithmic => input size reduces by half every iteration
+
+Space Complexity
+
+O(1) - Constant => memory needed does not depend on the input size
+O(n) - Linear => memory increases when size of input increases
+O(logn) - Logarithmic
+
