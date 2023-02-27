@@ -5,16 +5,16 @@ class Graph {
     }
 
 
-    isEmpty(){
-        return this.size === 0
-    }
+    // isEmpty(){
+    //     return this.size === 0
+    // }
 
     addVertex(vertex){
         this.adjacentlists[vertex] = new Set()
-        this.size++
+        // this.size++
     }
 
-    addAdjacency(vertex1,vertex2){
+    addEdge(vertex1,vertex2){
         if(this.adjacentlists[vertex1]){
             this.adjacentlists[vertex1].add(vertex2)
         }
@@ -23,7 +23,7 @@ class Graph {
         }
     }
 
-    removeAdjacency(vertex1,vertex2){
+    removeEdge(vertex1,vertex2){
         if(this.adjacentlists[vertex1]){
             this.adjacentlists[vertex1].delete(vertex2)
         }
@@ -35,33 +35,39 @@ class Graph {
     removeVertex(vertex){
         if(this.adjacentlists[vertex]){
             for(let item of this.adjacentlists[vertex]){
-                this.removeAdjacency(vertex,item)
+                this.removeEdge(vertex,item)
             }
             delete this.adjacentlists[vertex]
         }
     }
 
-    print(){
-        if(!this.isEmpty()){
+    hasEdge(vertex1,vertex2){
+        return this.adjacentlists[vertex1].has(vertex2) && this.adjacentlists[vertex2].has(vertex1)
+    }
+
+    display(){
+        
             for(let item in this.adjacentlists){
                 console.log(`${item} -> ${[...this.adjacentlists[item]]}`)
             }
-        }
+        
     }
 }
 
 // const graph = new Graph()
-// console.log(graph.isEmpty())
+// // console.log(graph.isEmpty())
 // graph.addVertex('A')
 // graph.addVertex('B')
 // graph.addVertex('C')
-// console.log(graph.isEmpty())
+// // console.log(graph.isEmpty())
 // // graph.print()
-// graph.addAdjacency('A','B')
-// graph.addAdjacency('A','C')
-// graph.addAdjacency('B','C')
+// graph.addEdge('A','B')
+// graph.addEdge('A','C')
+// graph.addEdge('B','C')
+// console.log(graph.hasEdge('A','C'))
 // graph.removeVertex('B')
-// graph.print()
+// console.log(graph.hasEdge('A','B'))
+// graph.display()
 
 
 class HashTable {
@@ -74,16 +80,16 @@ class HashTable {
     //     return this.table.length === 0
     // }
 
-    hashMap(key){
+    hash(key){
         let total = 0
         for(let i=0; i< key.length;i++){
             total+= key.charCodeAt(i)
         }
-        return total
+        return total % this.size
     }
 
-    add(key,value){
-        const index = this.hashMap(key)
+    set(key,value){
+        const index = this.hash(key)
         let bucket = this.table[index]
         if(!bucket){
             this.table[index] = [[key,value]]
@@ -100,8 +106,20 @@ class HashTable {
         }
     }
 
+    get(key){
+        const index = this.hash(key)
+        const bucket = this.table[index]
+        if(bucket){
+            const exist = bucket.find((item)=> item[0] === key)
+            if(exist){
+                return exist[1]
+            }
+        }
+        return undefined
+    }
+
     search(key){
-        const index = this.hashMap(key)
+        const index = this.hash(key)
         if(this.table[index]){
             return true
         }else{
@@ -109,20 +127,39 @@ class HashTable {
         }
     }
 
-    print(){
+    remove(key){
+        const index = this.hash(key)
+         let bucket = this.table[index]
+        //  console.log(bucket)
+        if(bucket){
+            let exist = bucket.find((item)=>item[0] === key)
+            // console.log(exist)
+            if(exist){
+                bucket.splice(bucket.indexOf(exist),1)
+            }
+        }
+    }
+
+    display(){
         for(let i =0;i<this.size;i++){
-            console.log(this.table[i])
+            // console.log(i)
+            if(this.table[i]){
+                console.log(i, this.table[i])
+            }
+            
         }
     }
 }
 
 // const hash = new HashTable(50)
-// hash.add('name','san')
-// hash.add('age',20)
-// hash.add('mane','ram')
-// hash.add('mane','krishna')
-// // hash.print()
-// console.log(hash.table)
+// hash.set('name','san')
+// hash.set('age',20)
+// hash.set('mane','ram')
+// hash.set('mane','krishna')
+// hash.set('maen','rahim')
+// hash.remove('maen')
+// hash.display()
+// // console.log(hash.table)
 // console.log(hash.search('name'))
 
 
@@ -209,20 +246,36 @@ class BinarySearchTree {
         this.postOrder(root.right)
         console.log(root.value)
     }
+
+    levelOrder(){
+        const queue = []
+        queue.push(this.root)
+        while(queue.length){
+            const curr = queue.shift()
+            console.log(curr.value)
+            if(curr.left){
+                queue.push(curr.left)
+            }
+            if(curr.right){
+                queue.push(curr.right)
+            }
+        }
+    }
 }
 
-// const bst = new BinarySearchTree()
+const bst = new BinarySearchTree()
 // console.log(bst.isEmpty())
-// bst.insert(10)
-// bst.insert(5)
-// bst.insert(15)
-// bst.insert(7)
-// bst.insert(3)
-// bst.insert(15)
+bst.insert(10)
+bst.insert(5)
+bst.insert(15)
+bst.insert(7)
+bst.insert(3)
+bst.insert(13)
 // bst.preOrder(bst.root)
 // bst.inOrder(bst.root)
 // bst.postOrder(bst.root)
-// console.log(bst.search(bst.root,17))
+bst.levelOrder()
+// console.log(bst.search(bst.root,13))
 
 
 class CircularQueue {
@@ -284,22 +337,22 @@ class CircularQueue {
     }
 }
 
-const circle = new CircularQueue(5)
-console.log(circle.isEmpty())
-console.log(circle.isFull())
-circle.enQueue(10)
-circle.enQueue(20)
-circle.enQueue(30)
-circle.enQueue(40)
-circle.enQueue(50)
-circle.enQueue(60)
-console.log(circle.print())
-circle.deQueue()
-circle.deQueue()
-circle.deQueue()
-circle.deQueue()
-circle.deQueue()
-console.log(circle.isEmpty())
-console.log(circle.print())
-console.log(circle.peek())
-console.log(circle.front)
+// const circle = new CircularQueue(5)
+// console.log(circle.isEmpty())
+// console.log(circle.isFull())
+// circle.enQueue(10)
+// circle.enQueue(20)
+// circle.enQueue(30)
+// circle.enQueue(40)
+// circle.enQueue(50)
+// circle.enQueue(60)
+// console.log(circle.print())
+// circle.deQueue()
+// circle.deQueue()
+// circle.deQueue()
+// circle.deQueue()
+// circle.deQueue()
+// console.log(circle.isEmpty())
+// console.log(circle.print())
+// console.log(circle.peek())
+// console.log(circle.front)
