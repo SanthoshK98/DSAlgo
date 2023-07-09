@@ -78,3 +78,33 @@ console.log(queueOpt.peek())
 queueOpt.enqueue(10)
 console.log(queueOpt.dequeue())
 queueOpt.print()
+
+
+class QueueImp {
+    constructor(){
+        this.items = {} 
+        /** items = {
+         *      '0':10,
+         *      '1':20,
+         *      '2':{
+         *          name:"sanhok"
+         *      },
+         *      '3':['sanhok','kosak']
+         * }
+        */
+        this.rear = 0
+        this.front = 0
+    }
+
+    enqueue(value){
+        this.items[this.rear] = value
+        this.rear++
+    }
+
+    dequeue(){
+        let item = this.items[this.front]
+        delete this.items[this.front]
+        this.front++
+        return item
+    }
+}

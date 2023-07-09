@@ -174,32 +174,32 @@ class LinkedList {
     }
 }
 
-const list = new LinkedList()
-console.log(list.isEmpty())
-console.log(list.getSize())
+// const list = new LinkedList()
+// console.log(list.isEmpty())
+// console.log(list.getSize())
+// // list.print()
+// list.prepend(10)
+// // list.print()
+// list.prepend(20)
+// list.prepend(30)
 // list.print()
-list.prepend(10)
+// list.append(40)
+// list.append(50)
+// list.append(60)
 // list.print()
-list.prepend(20)
-list.prepend(30)
-list.print()
-list.append(40)
-list.append(50)
-list.append(60)
-list.print()
-list.insert(5,0)
+// list.insert(5,0)
+// // list.print()
+// list.insert(15,0)
+// // list.print()
+// // list.insert(30,1)
+// // list.print()
+// // list.insert(40,2)
 // list.print()
-list.insert(15,0)
+// console.log(list.getSize())
+// list.removeFrom(3)
+// list.removeFrom(0)
+// console.log(list.removeFrom(10))
 // list.print()
-// list.insert(30,1)
-// list.print()
-// list.insert(40,2)
-list.print()
-console.log(list.getSize())
-list.removeFrom(3)
-list.removeFrom(0)
-console.log(list.removeFrom(10))
-list.print()
 //Optimised LinkedList
 
 class LinkedListOpt {
@@ -291,6 +291,10 @@ class LinkedListOpt {
         return value
         
     }
+
+    sort(list1,list2){
+        let newNode = {next: null}
+    }
 }
 
 const linkOpt = new LinkedListOpt()
@@ -310,3 +314,4 @@ const linkOpt = new LinkedListOpt()
 // console.log(linkOpt.removeFromLast() )
 // linkOpt.print()
 // console.log(linkOpt.getSize())
+

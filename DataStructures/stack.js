@@ -17,6 +17,9 @@ class Stack {
     size(){
         return this.items.length
     }
+    print(){
+        console.log(this.items.toString())
+    }
 }
 
 const stackObj = new Stack()
