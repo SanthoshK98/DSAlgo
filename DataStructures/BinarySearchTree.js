@@ -98,18 +98,85 @@ class BinarySearchTree {
         }
         return root
     }
+    preOrder(root){
+        if(root){
+            console.log(root.value)
+            this.preOrder(root.left)
+            this.preOrder(root.right)
+        }
+    }
+
+    inOrder(root){
+        if(root){
+            
+            this.inOrder(root.left)
+            console.log(root.value)
+            this.inOrder(root.right)
+        }
+    }
+
+    postOrder(root){
+        if(root){
+            
+            this.postOrder(root.left)
+            this.postOrder(root.right)
+            console.log(root.value)
+        }
+    }
+
+    levelOrder(){
+        //Use the optimised queue
+        let breadth = 0, depth = 0, nodes = 0
+        if(this.isEmpty()){
+            return
+        }
+        const queue = []
+        queue.push(this.root)
+        while(queue.length){
+            let curr = queue.shift()
+            console.log(curr.value)
+            nodes++
+            if(curr.left){
+                queue.push(curr.left)
+            }
+            if(curr.right){
+                queue.push(curr.right)
+            }
+            if(curr.left || curr.right){
+                depth++
+            }
+            if(!curr.left && !curr.right){
+                breadth++
+            }
+        }
+        console.log("breadth",breadth)
+        console.log("depth",depth) //need to check logic
+        console.log("nodes",nodes)
+    }
     
 }
 
-// const bts = new BinarySearchTree()
-// bts.insert(10)
-// bts.insert(15)
-// bts.insert(5)
-// bts.insert(20)
-// bts.insert(7)
-// console.log(bts.isEmpty())
-// console.log(bts.root)
-// console.log(bts.search(bts.root,2))
+const bts = new BinarySearchTree()
+bts.insert(10)
+bts.insert(15)
+bts.insert(5)
+bts.insert(20)
+bts.insert(7)
+bts.insert(13)
+bts.insert(3)
+console.log(bts.isEmpty())
+console.log(bts.root)
+console.log(bts.search(bts.root,2))
+bts.preOrder(bts.root)
+console.log("------------------------------------------------------------")
+bts.inOrder(bts.root)
+console.log("------------------------------------------------------------")
+bts.postOrder(bts.root)
+console.log("------------------------------------------------------------")
+bts.levelOrder()
+
+
+
 
 class NodeR {
     constructor(val){
@@ -228,14 +295,14 @@ class BinaryTree {
 
 }
 
-const bts = new BinaryTree()
-bts.insert(10)
-bts.insert(5)
-bts.insert(15)
-bts.insert(20)
-bts.insert(7)
-bts.insert(2)
-bts.insert(12)
-console.log(bts.search(bts.root,12))
-// console.log(bts.root)
-bts.preOrder(bts.root)
+// const bts = new BinaryTree()
+// bts.insert(10)
+// bts.insert(5)
+// bts.insert(15)
+// bts.insert(20)
+// bts.insert(7)
+// bts.insert(2)
+// bts.insert(12)
+// console.log(bts.search(bts.root,12))
+// // console.log(bts.root)
+// bts.preOrder(bts.root)

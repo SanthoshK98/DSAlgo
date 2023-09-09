@@ -45,7 +45,8 @@ if(hashMap.lar[high[0]] > hashMap.small[low[0]]){
 // console.log(hashMap)
 // console.log(small)
 
-let week = [8,7,5,4,2,1], minSofar=week[0], maxProfit=0
+// let week = [8,7,5,4,2,1], minSofar=week[0], maxProfit=0
+let week = [7,1,5,4,2,8], minSofar=week[0], maxProfit=0
 for(let i=0;i<week.length;i++){
     minSofar = Math.min(minSofar,week[i])
     let profit = week[i] - minSofar
